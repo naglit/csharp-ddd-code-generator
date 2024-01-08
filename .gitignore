@@ -159,7 +159,11 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-src/configs/class_design.json
-**/.DS_Store
-src/test/*
 
+changeset.txt
+setup.cfg
+README.html
+src/outputs/*
+class_design.json
+files.txt
+src/test/*
