@@ -1,0 +1,136 @@
+{
+    "dtos": [
+        {
+            "physical_class_name": "PurchaseOrderDto",
+            "columns": [
+                {
+                    "db_column":"purchase_order_id",
+                    "physical_name": "PurchaseOrderId",
+                    "logical_name": "Purchase Order ID",
+                    "type": "int"
+                },
+                {
+                    "db_column":"vendor_id",
+                    "physical_name": "VendorId",
+                    "logical_name": "Vendor ID",
+                    "type": "int"
+                },
+                {
+                    "db_column":"operator_id",
+                    "physical_name": "OperatorId",
+                    "logical_name": "Operator ID",
+                    "type": "int"
+                },
+                {
+                    "db_column":"created",
+                    "physical_name": "Created",
+                    "logical_name": "Created At",
+                    "type": "DateTime"
+                },
+                {
+                    "db_column":"modified",
+                    "physical_name": "Modified",
+                    "logical_name": "Modified At",
+                    "type": "DateTime"
+                }
+            ]
+        },
+        {
+            "physical_class_name": "PurchaseOrderItemDto",
+            "columns": [
+                {
+                    "db_column":"purchase_order_id",
+                    "physical_name": "PurchaseOrderId",
+                    "logical_name": "Purchase Order ID",
+                    "type": "int"
+                },
+                {
+                    "db_column":"purchase_order_item_id",
+                    "physical_name": "PurchaseOrderItemId",
+                    "logical_name": "Purchase Order Item ID",
+                    "type": "int"
+                },
+                {
+                    "db_column":"quantity",
+                    "physical_name": "Quantity",
+                    "logical_name": "Item Quantity",
+                    "type": "int"
+                },
+                {
+                    "db_column":"amount",
+                    "physical_name": "Amount",
+                    "logical_name": "Amount",
+                    "type": "decimal"
+                }
+            ]
+        }
+    ],
+    "domains": [
+        {
+            "physical_class_name": "PurchaseOrder",
+            "logical_class_name": "Purchase Order",
+            "properties": [
+                {
+                    "physical_name": "PurchaseOrderId",
+                    "logical_name": "Purchase Order ID",
+                    "type": "PurchaseOrderId",
+                    "access_identifier": "public",
+                    "value_object_type": "int",
+                    "dto_mapping":"PurchaseOrderDto.purchase_order_id"
+                },
+                {
+                    "physical_name": "VendorId",
+                    "logical_name": "Vendor ID",
+                    "type": "VendorId",
+                    "access_identifier": "public",
+                    "value_object_type": "int"
+                },
+                {
+                    "physical_name": "OperatorId",
+                    "logical_name": "Operator ID",
+                    "type": "OperatorId",
+                    "access_identifier": "public",
+                    "value_object_type": "int"
+                },
+                {
+                    "physical_name": "Items",
+                    "logical_name": "Purchase Order Item List",
+                    "type": "PurchaseOrderItemList",
+                    "element_type": {
+                        "physical_class_name": "PurchaseOrderItem",
+                        "logical_class_name": "Purchase Order Item",
+                        "properties": [
+                            {
+                                "physical_name": "PurchaseOrderItemId",
+                                "type": "PurchaseOrderItemId",
+                                "value_object_type": "int"
+                            },
+                            {
+                                "physical_name": "Quantity",
+                                "type": "Quantity",
+                                "value_object_type": "int"
+                            },
+                            {
+                                "physical_name": "Amount",
+                                "type": "Amount",
+                                "value_object_type": "decimal"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "physical_name": "Created",
+                    "logical_name": "Created At",
+                    "type": "Created",
+                    "value_object_type": "DateTime"
+                },
+                {
+                    "physical_name": "Modified",
+                    "logical_name": "Modified At",
+                    "type": "Modified",
+                    "value_object_type": "DateTime"
+                }
+            ]
+        }
+    ]
+}
