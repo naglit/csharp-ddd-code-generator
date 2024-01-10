@@ -7,6 +7,10 @@ TO_TYPE = "@@Type@@"
 INIT = "@@init@@"
 PROPERTIES = "@@properties@@"
 
+def bind_dto(template:list[str], data:list[dict]) -> list[str]:
+    s
+
+
 def replace_tags_in_model(model_spec, lines):    
     # dynamically render multiple lines
     spec = model_spec["model_properties"]

@@ -4,7 +4,7 @@ from configs import config
 from pyutil.util import file_query_repository as q_repo
 from pyutil.util import file_update_repository as u_repo
 from pyutil.util import log_util as log
-from code_generation import file_repository, tag_replacement_service, template_service
+from code_generation import bind_service, file_repository, template_service
 
 
 def main():
@@ -23,7 +23,7 @@ def main():
     return
     models = design["models"]
 
-    generate(spec["domain"], reader.read_model_template, tag_replacement_service.replace_tags_in_model, output.write_model)
+    generate(spec["domain"], reader.read_model_template, bind_service.replace_tags_in_model, output.write_model)
     
     # Generate model property and value object classes
     print("Generate model property and value object classes")

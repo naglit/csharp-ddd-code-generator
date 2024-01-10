@@ -1,5 +1,5 @@
 from pyutil.util import file_query_repository as q_repo
-import code_generation.tag_replacement_service as tr
+import code_generation.bind_service as tr
 
 DTO_CLASS = 0
 MODEL_CLASS = 1
@@ -14,7 +14,7 @@ TEMPLATES_MAP = {
 
 def generate_dto_classes(dto_designs: list[dict]):
     dto_template = read_dto_template()
-    tr.generate_dto_classes()
+    tr.bind_dto()
 
 def read_dto_template():
     return __read_template(TEMPLATES_MAP[DTO_CLASS])

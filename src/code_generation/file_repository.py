@@ -1,5 +1,6 @@
 import os, re, time, sys
-import utility.file_repository as fc
+from pyutil.util import file_query_repository as q_repo
+from pyutil.util import file_update_repository as u_repo
 
 unique_output_dir = ""
 
@@ -15,14 +16,14 @@ def write_property(spec_property, new_code):
 
 # Write
 def write_class(file_path_from_root, new_code):
-    replaced_code = fc.write_file(os.path.join(unique_output_dir, file_path_from_root), new_code)
+    replaced_code = u_repo.write_file(os.path.join(unique_output_dir, file_path_from_root), new_code)
     return replaced_code
 
 # Make dir
 def make_subdirectories(property_spec):
     sub_dir = get_sub_dir(property_spec["namespace"])
     new_dir = os.path.join(unique_output_dir, sub_dir)
-    fc.make_dir(new_dir)
+    u_repo.make_dir(new_dir)
 
 def get_sub_dir(namespace):
     regex_pattern = r"^(?:[a-zA-Z0-9]+)\.(?:[a-zA-Z0-9]+\.){3}([a-zA-Z0-9\.]+)"
