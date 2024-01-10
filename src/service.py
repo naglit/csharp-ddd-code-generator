@@ -1,6 +1,6 @@
 from pyutil.util import specification as sp
 from pyutil.util import file_query_repository as q_repo
-from domain_class import output, reader, tag_replacement
+from code_generation import file_repository, tag_replacement_service, template_service
 from configs import config
 
 def generate_classes():
@@ -11,7 +11,7 @@ def generate_classes():
 
     # Generate domain model
     print("Generate a domain model")
-    generate(spec["domain"], reader.read_model_template, tag_replacement.replace_tags_in_model, output.write_model)
+    generate(spec["domain"], template_service.read_model_template, tag_replacement_service.replace_tags_in_model, output.write_model)
     
     # Generate model property and value object classes
     print("Generate model property and value object classes")
@@ -31,10 +31,10 @@ def generate(spec, read, replace, write):
 # generate_model_properties
 def generate_model_properties(properties_spec):
     # read
-    template_codes = list(map(reader.get_template_code, properties_spec))
+    template_codes = list(map(template_service.get_template_code, properties_spec))
 
     # replace
-    new_codes = list(map(tag_replacement.replace_template_code, properties_spec, template_codes))
+    new_codes = list(map(tag_replacement_service.replace_template_code, properties_spec, template_codes))
 
     # write
     results = list(map(output.write_property, properties_spec, new_codes))

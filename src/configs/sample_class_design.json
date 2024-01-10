@@ -65,7 +65,7 @@
             ]
         }
     ],
-    "domains": [
+    "models": [
         {
             "physical_class_name": "PurchaseOrder",
             "logical_class_name": "Purchase Order",

@@ -8,8 +8,7 @@ def read_file(file_path):
         return lines
     
 def read_json(json_arg = None):
-    json_name = "spec.json" if json_arg == None else json_arg
-    
+    json_name = "spec.json" if json_arg == None else json_arg    
     json_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", json_name)
     print(json_path)
     return
