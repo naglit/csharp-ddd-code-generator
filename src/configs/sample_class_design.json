@@ -1,74 +1,11 @@
 {
-    "dtos": [
-        {
-            "physical_class_name": "PurchaseOrderDto",
-            "columns": [
-                {
-                    "db_column":"purchase_order_id",
-                    "physical_name": "PurchaseOrderId",
-                    "logical_name": "Purchase Order ID",
-                    "type": "int"
-                },
-                {
-                    "db_column":"vendor_id",
-                    "physical_name": "VendorId",
-                    "logical_name": "Vendor ID",
-                    "type": "int"
-                },
-                {
-                    "db_column":"operator_id",
-                    "physical_name": "OperatorId",
-                    "logical_name": "Operator ID",
-                    "type": "int"
-                },
-                {
-                    "db_column":"created",
-                    "physical_name": "Created",
-                    "logical_name": "Created At",
-                    "type": "DateTime"
-                },
-                {
-                    "db_column":"modified",
-                    "physical_name": "Modified",
-                    "logical_name": "Modified At",
-                    "type": "DateTime"
-                }
-            ]
-        },
-        {
-            "physical_class_name": "PurchaseOrderItemDto",
-            "columns": [
-                {
-                    "db_column":"purchase_order_id",
-                    "physical_name": "PurchaseOrderId",
-                    "logical_name": "Purchase Order ID",
-                    "type": "int"
-                },
-                {
-                    "db_column":"purchase_order_item_id",
-                    "physical_name": "PurchaseOrderItemId",
-                    "logical_name": "Purchase Order Item ID",
-                    "type": "int"
-                },
-                {
-                    "db_column":"quantity",
-                    "physical_name": "Quantity",
-                    "logical_name": "Item Quantity",
-                    "type": "int"
-                },
-                {
-                    "db_column":"amount",
-                    "physical_name": "Amount",
-                    "logical_name": "Amount",
-                    "type": "decimal"
-                }
-            ]
-        }
-    ],
     "models": [
         {
-            "physical_class_name": "PurchaseOrder",
-            "logical_class_name": "Purchase Order",
+            "access_identifier": "public",
+            "physical_name": "PurchaseOrder",
+            "logical_name": "Purchase Order",
+            "inheritance": "",
+            "import": "",
             "properties": [
                 {
                     "physical_name": "PurchaseOrderId",
@@ -76,59 +13,91 @@
                     "type": "PurchaseOrderId",
                     "access_identifier": "public",
                     "value_object_type": "int",
-                    "dto_mapping":"PurchaseOrderDto.purchase_order_id"
+                    "dto_mapping": "purchase_order_id"
                 },
                 {
-                    "physical_name": "VendorId",
-                    "logical_name": "Vendor ID",
-                    "type": "VendorId",
-                    "access_identifier": "public",
-                    "value_object_type": "int"
-                },
-                {
-                    "physical_name": "OperatorId",
-                    "logical_name": "Operator ID",
-                    "type": "OperatorId",
-                    "access_identifier": "public",
-                    "value_object_type": "int"
-                },
-                {
-                    "physical_name": "Items",
-                    "logical_name": "Purchase Order Item List",
-                    "type": "PurchaseOrderItemList",
-                    "element_type": {
-                        "physical_class_name": "PurchaseOrderItem",
-                        "logical_class_name": "Purchase Order Item",
-                        "properties": [
-                            {
-                                "physical_name": "PurchaseOrderItemId",
-                                "type": "PurchaseOrderItemId",
-                                "value_object_type": "int"
-                            },
-                            {
-                                "physical_name": "Quantity",
-                                "type": "Quantity",
-                                "value_object_type": "int"
-                            },
-                            {
-                                "physical_name": "Amount",
-                                "type": "Amount",
-                                "value_object_type": "decimal"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "physical_name": "Created",
-                    "logical_name": "Created At",
-                    "type": "Created",
-                    "value_object_type": "DateTime"
-                },
-                {
-                    "physical_name": "Modified",
-                    "logical_name": "Modified At",
-                    "type": "Modified",
-                    "value_object_type": "DateTime"
+                    "physical_name": "Customer",
+                    "logical_name": "Customer",
+                    "type": "Customer",
+                    "access_identifier": "",
+                    "value_object_type": "",
+                    "dto_mapping": "",
+                    "properties": [
+                        {
+                            "physical_name": "CustomerId",
+                            "logical_name": "Customer ID",
+                            "type": "CustomerId",
+                            "access_identifier": "public",
+                            "value_object_type": "int",
+                            "dto_mapping": "customer_id"
+                        },
+                        {
+                            "physical_name": "CustomerName",
+                            "logical_name": "Customer Name",
+                            "type": "CustomerName",
+                            "access_identifier": "public",
+                            "value_object_type": "string",
+                            "dto_mapping": "customer_name"
+                        },
+                        {
+                            "physical_name": "BillingAddress",
+                            "logical_name": "Billing Address",
+                            "type": "BillingAddress",
+                            "access_identifier": "public",
+                            "value_object_type": "",
+                            "dto_mapping": "",
+                            "properties": [
+                                {
+                                    "physical_name": "BillingName",
+                                    "logical_name": "Billing Name",
+                                    "type": "BillingName",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "billing_name"
+                                },
+                                {
+                                    "physical_name": "BillingAddress1",
+                                    "logical_name": "Billing Address1",
+                                    "type": "BillingAddress1",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "billing_address1"
+                                },
+                                {
+                                    "physical_name": "BillingAddress2",
+                                    "logical_name": "Billing Address2",
+                                    "type": "BillingAddress2",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "billing_address2"
+                                },
+                                {
+                                    "physical_name": "BillingCity",
+                                    "logical_name": "Billing City",
+                                    "type": "BillingCity",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "billing_city"
+                                },
+                                {
+                                    "physical_name": "BillingState",
+                                    "logical_name": "Billing State",
+                                    "type": "BillingState",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "billing_state"
+                                },
+                                {
+                                    "physical_name": "BillingCountry",
+                                    "logical_name": "Billing Country",
+                                    "type": "BillingCountry",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "billing_country"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
