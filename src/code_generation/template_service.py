@@ -1,5 +1,6 @@
 from pyutil.util import file_query_repository as q_repo
 import code_generation.bind_service as tr
+from code_generation.model import Model
 
 DTO_CLASS = 0
 MODEL_CLASS = 1
@@ -12,11 +13,11 @@ TEMPLATES_MAP = {
         VALUE_OBJECT_CLASS: "template-valueobject.cs",
     }
 
-def generate_dto_classes(dto_designs: list[dict]):
+def generate_dto_classes(dto_designs: list[Model]):
     dto_template = read_dto_template()
-    tr.bind_dto()
+    tr.bind_dto() ## this is function
 
-def read_dto_template():
+def read_dto_template() -> list[str]:
     return __read_template(TEMPLATES_MAP[DTO_CLASS])
 
 def read_model_template():

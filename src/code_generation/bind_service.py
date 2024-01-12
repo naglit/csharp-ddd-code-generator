@@ -8,7 +8,7 @@ INIT = "@@init@@"
 PROPERTIES = "@@properties@@"
 
 def bind_dto(template:list[str], data:list[dict]) -> list[str]:
-    s
+    print()
 
 
 def replace_tags_in_model(model_spec, lines):    
