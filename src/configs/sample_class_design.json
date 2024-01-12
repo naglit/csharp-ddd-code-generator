@@ -16,28 +16,28 @@
                     "dto_mapping": "purchase_order_id"
                 },
                 {
-                    "physical_name": "Customer",
-                    "logical_name": "Customer",
-                    "type": "Customer",
+                    "physical_name": "Vendor",
+                    "logical_name": "Vendor",
+                    "type": "Vendor",
                     "access_identifier": "",
                     "value_object_type": "",
                     "dto_mapping": "",
                     "properties": [
                         {
-                            "physical_name": "CustomerId",
-                            "logical_name": "Customer ID",
-                            "type": "CustomerId",
+                            "physical_name": "VendorId",
+                            "logical_name": "Vendor ID",
+                            "type": "VendorId",
                             "access_identifier": "public",
                             "value_object_type": "int",
-                            "dto_mapping": "customer_id"
+                            "dto_mapping": "vendor_id"
                         },
                         {
-                            "physical_name": "CustomerName",
-                            "logical_name": "Customer Name",
-                            "type": "CustomerName",
+                            "physical_name": "VendorName",
+                            "logical_name": "Vendor Name",
+                            "type": "VendorName",
                             "access_identifier": "public",
                             "value_object_type": "string",
-                            "dto_mapping": "customer_name"
+                            "dto_mapping": "vendor_name"
                         },
                         {
                             "physical_name": "BillingAddress",
@@ -94,6 +94,107 @@
                                     "access_identifier": "public",
                                     "value_object_type": "string",
                                     "dto_mapping": "billing_country"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "access_identifier": "public",
+            "physical_name": "SalesOrder",
+            "logical_name": "Sales Order",
+            "inheritance": "",
+            "import": "",
+            "properties": [
+                {
+                    "physical_name": "SalesOrderId",
+                    "logical_name": "Sales Order ID",
+                    "type": "SalesOrderId",
+                    "access_identifier": "public",
+                    "value_object_type": "int",
+                    "dto_mapping": "sales_order_id"
+                },
+                {
+                    "physical_name": "Customer",
+                    "logical_name": "Customer",
+                    "type": "Customer",
+                    "access_identifier": "",
+                    "value_object_type": "",
+                    "dto_mapping": "",
+                    "properties": [
+                        {
+                            "physical_name": "CustomerId",
+                            "logical_name": "Customer ID",
+                            "type": "CustomerId",
+                            "access_identifier": "public",
+                            "value_object_type": "int",
+                            "dto_mapping": "customer_id"
+                        },
+                        {
+                            "physical_name": "CustomerName",
+                            "logical_name": "Customer Name",
+                            "type": "CustomerName",
+                            "access_identifier": "public",
+                            "value_object_type": "string",
+                            "dto_mapping": "customer_name"
+                        },
+                        {
+                            "physical_name": "ShippingAddress",
+                            "logical_name": "Shipping Address",
+                            "type": "ShippingAddress",
+                            "access_identifier": "public",
+                            "value_object_type": "",
+                            "dto_mapping": "",
+                            "properties": [
+                                {
+                                    "physical_name": "ShippingName",
+                                    "logical_name": "Shipping Name",
+                                    "type": "ShippingName",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "shipping_name"
+                                },
+                                {
+                                    "physical_name": "ShippingAddress1",
+                                    "logical_name": "Shipping Address1",
+                                    "type": "ShippingAddress1",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "shipping_address1"
+                                },
+                                {
+                                    "physical_name": "ShippingAddress2",
+                                    "logical_name": "Shipping Address2",
+                                    "type": "ShippingAddress2",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "shipping_address2"
+                                },
+                                {
+                                    "physical_name": "ShippingCity",
+                                    "logical_name": "Shipping City",
+                                    "type": "ShippingCity",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "shipping_city"
+                                },
+                                {
+                                    "physical_name": "ShippingState",
+                                    "logical_name": "Shipping State",
+                                    "type": "ShippingState",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "shipping_state"
+                                },
+                                {
+                                    "physical_name": "ShippingCountry",
+                                    "logical_name": "Shipping Country",
+                                    "type": "ShippingCountry",
+                                    "access_identifier": "public",
+                                    "value_object_type": "string",
+                                    "dto_mapping": "shipping_country"
                                 }
                             ]
                         }
