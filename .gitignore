@@ -167,3 +167,4 @@ src/outputs/*
 class_design.json
 files.txt
 src/test/*
+**/.DS_Store
