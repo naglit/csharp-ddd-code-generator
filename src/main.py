@@ -19,7 +19,7 @@ def main():
         
     print("Generate a domain model")
     
-    template_service.generate_dto_classes(models)
+    template_service.get_db_mapping_values_list(models)
     return
     
 

@@ -15,19 +15,23 @@ TEMPLATES_MAP = {
         VALUE_OBJECT_CLASS: "template-valueobject.cs",
     }
 
-def generate_dto_classes(parent_path: str, models: list[Model]):
+def get_db_mapping_values_list(models: list[Model]) -> list[list[str]]:
+    return [get_db_mapping_values(model) for model in models]
+
+def get_db_mapping_values(models: list[Model]) -> list[str]:
+    values = []
     for model in models:
-        if model.has_properties() == False:
-            log.print_with_newline("value_model: "+ model.get_physical_name())
+        if model.has_properties():
+            values += get_db_mapping_values(model.get_properties())
             continue
 
-        path = q_repo.append_path(parent_path, model.get_physical_name())
-        log.print_with_newline("# path: " + path)
-        u_repo.make_dir(path)
-        recursively_make_dir(path, model.get_properties())
+        db_mapping_value = model.get_db_mapping_value()
+        values.append(db_mapping_value)
+        print(db_mapping_value)
 
-    template = read_dto_template()
-    tr.bind_dto() ## this is function
+        # template = read_dto_template()
+        # tr.bind_dto() ## this is function
+    return values
 
 def read_dto_template() -> Template:
     return __read_template(TEMPLATES_MAP[DTO_CLASS])

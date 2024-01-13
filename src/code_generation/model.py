@@ -1,7 +1,9 @@
+from pyutil.util import case_conversion as cc
 
 class Model:
 	PHYSICAL_NAME = "physical_name"
 	PROPERTIES = "properties"
+	DB_MAPPING_VALUE = "dto_mapping"
 	def __init__(self, model:dict):
 		self.__model = model
 		self.__properties = [Model(x) for x in model.get(self.PROPERTIES, [])]
@@ -11,5 +13,8 @@ class Model:
 	
 	def has_properties(self) -> bool:
 		return True if len(self.__properties) > 0 else False
+
+	def get_db_mapping_value(self) -> str:
+		return self.__model.get(self.DB_MAPPING_VALUE, cc.to_lower_snake_from_pascal(self.get_physical_name()))
 	
 	def get_properties(self) -> list : return self.__properties
