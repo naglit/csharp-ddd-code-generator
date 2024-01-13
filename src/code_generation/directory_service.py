@@ -7,10 +7,7 @@ PROPERTIES = "properties"
 
 def recursively_make_dir(parent_path: str, models: list[Model]):
     for model in models:
-        if model.has_properties() == False:
-            q_repo.append_path_to_current_dir()
-            log.print_with_newline("value_model: "+ model.get_physical_name())
-            continue
+        if model.has_properties() == False: continue
 
         path = q_repo.append_path(parent_path, model.get_physical_name())
         log.print_with_newline("# path: " + path)
