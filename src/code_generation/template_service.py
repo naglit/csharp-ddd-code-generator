@@ -18,20 +18,16 @@ TEMPLATES_MAP = {
 def get_db_mapping_values_list(models: list[Model]) -> list[list[str]]:
     return [get_db_mapping_values(model) for model in models]
 
-def get_db_mapping_values(models: list[Model]) -> list[str]:
+def get_db_mapping_values(model: Model) -> list[str]:
     values = []
-    for model in models:
-        if model.has_properties():
-            values += get_db_mapping_values(model.get_properties())
-            continue
+    if model.has_properties():
+        for p in model.get_properties():
+             values += get_db_mapping_values(p) 
 
-        db_mapping_value = model.get_db_mapping_value()
-        values.append(db_mapping_value)
-        print(db_mapping_value)
-
-        # template = read_dto_template()
-        # tr.bind_dto() ## this is function
+    values.append(model.get_db_mapping_value())
     return values
+    # template = read_dto_template()
+    # tr.bind_dto() ## this is function
 
 def read_dto_template() -> Template:
     return __read_template(TEMPLATES_MAP[DTO_CLASS])
