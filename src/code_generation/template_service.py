@@ -15,6 +15,10 @@ TEMPLATES_MAP = {
         VALUE_OBJECT_CLASS: "template-valueobject.cs",
     }
 
+def generate_dto(models: list[Model]):
+    dto_properties = get_db_mapping_values_list(models)
+    
+
 def get_db_mapping_values_list(models: list[Model]) -> list[list[str]]:
     return [get_db_mapping_values(model) for model in models]
 
