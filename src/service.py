@@ -11,7 +11,7 @@ def generate_classes():
 
     # Generate domain model
     print("Generate a domain model")
-    generate(spec["domain"], template_service.read_model_template, bind_service.replace_tags_in_model, output.write_model)
+    generate(spec["domain"], template_service.__read_model_template, bind_service.replace_tags_in_model, output.write_model)
     
     # Generate model property and value object classes
     print("Generate model property and value object classes")
@@ -31,7 +31,7 @@ def generate(spec, read, replace, write):
 # generate_model_properties
 def generate_model_properties(properties_spec):
     # read
-    template_codes = list(map(template_service.get_template_code, properties_spec))
+    template_codes = list(map(template_service.__get_template_code, properties_spec))
 
     # replace
     new_codes = list(map(bind_service.replace_template_code, properties_spec, template_codes))

@@ -15,28 +15,34 @@ TEMPLATES_MAP = {
         VALUE_OBJECT_CLASS: "template-valueobject.cs",
     }
 
-def generate_dto(models: list[Model]):
-    dto_properties = get_db_mapping_values_list(models)
-    
+def generate_dtos(models: list[Model]):
+    dto_properties_set = __get_db_mapping_values_list(models)
+    for dto_properties in dto_properties_set:
+        generate_dto_properties(dto_properties)
 
-def get_db_mapping_values_list(models: list[Model]) -> list[list[str]]:
-    return [get_db_mapping_values(model) for model in models]
+def generate_dto_properties(properties: list[str]):
+    template = __read_dto_template()
+    template.bind_properties(properties)
 
-def get_db_mapping_values(model: Model) -> list[str]:
+def __get_db_mapping_values_list(models: list[Model]) -> list[list[str]]:
+    return [__get_db_mapping_values(model) for model in models]
+
+def __get_db_mapping_values(model: Model) -> list[str]:
     values = []
     if model.has_properties():
         for p in model.get_properties():
-             values += get_db_mapping_values(p) 
+             values += __get_db_mapping_values(p)
+        return values
 
     values.append(model.get_db_mapping_value())
     return values
     # template = read_dto_template()
     # tr.bind_dto() ## this is function
 
-def read_dto_template() -> Template:
+def __read_dto_template() -> Template:
     return __read_template(TEMPLATES_MAP[DTO_CLASS])
 
-def read_model_template() -> Template:
+def __read_model_template() -> Template:
     return __read_template(TEMPLATES_MAP[MODEL_CLASS])
 
 # def read_model_template():
@@ -45,7 +51,7 @@ def read_model_template() -> Template:
 # def read_model_template():
 #     return read_template(TEMPLATES_MAP[VALUE_OBJECT_CLASS])
 
-def get_template_code(prpty_spec):
+def __get_template_code(prpty_spec):
     template = TEMPLATES_MAP[MODEL_PROPERTY_CLASS] if prpty_spec["is_value_object"] == "0" else TEMPLATES_MAP[VALUE_OBJECT_CLASS]
     return __read_template(template)
 
