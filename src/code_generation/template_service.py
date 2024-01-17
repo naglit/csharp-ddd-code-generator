@@ -18,16 +18,19 @@ TEMPLATES_MAP = {
 def generate_dtos(models: list[Model]):
     models = __get_db_mapping_models(models)
     for model in models:
-        generate_dto_properties(model)
+        generate_dto(model)
 
-def generate_dto_properties(properties: list[str]):
+def generate_dto(properties: list[str]):
     template = __read_dto_template()
     template.bind_properties(properties)
+    # class-name
+    #  
 
 def __get_db_mapping_models(models: list[Model]) -> list[list[str]]:
     return [__get_db_mapping_values(model) for model in models]
 
 def __get_db_mapping_values(model: Model) -> list[str]:
+    """ Create a model to bind """
     values = []
     if model.has_properties():
         for p in model.get_properties():

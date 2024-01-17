@@ -1,4 +1,3 @@
-@@imp@@
 
 namespace @@namespace@@
 {

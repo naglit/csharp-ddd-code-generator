@@ -23,6 +23,7 @@ class Template:
         print(self.__bound_lines)
 
     def generate_property_codes(self, properties: list[str]) -> str:
+        """ Bind Properties """
         property_codes = []
         for p in properties:
             property_codes.append(self.bind_property(p))
