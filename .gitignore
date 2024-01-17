@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 
 src/configs/class_design.json
+**/.DS_Store
+src/test/*
+
