@@ -16,15 +16,15 @@ TEMPLATES_MAP = {
     }
 
 def generate_dtos(models: list[Model]):
-    dto_properties_set = __get_db_mapping_values_list(models)
-    for dto_properties in dto_properties_set:
-        generate_dto_properties(dto_properties)
+    models = __get_db_mapping_models(models)
+    for model in models:
+        generate_dto_properties(model)
 
 def generate_dto_properties(properties: list[str]):
     template = __read_dto_template()
     template.bind_properties(properties)
 
-def __get_db_mapping_values_list(models: list[Model]) -> list[list[str]]:
+def __get_db_mapping_models(models: list[Model]) -> list[list[str]]:
     return [__get_db_mapping_values(model) for model in models]
 
 def __get_db_mapping_values(model: Model) -> list[str]:
