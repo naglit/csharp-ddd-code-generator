@@ -1,24 +1,25 @@
 # import service
-from configs import config
 from pyutil.util import file_query_repository as q_repo
 from pyutil.util import file_update_repository as u_repo
 from pyutil.util import log_util as log
 from code_generation import bind_service, file_repository, template_service
-from code_generation import directory_service
+from code_generation import directory_service, config_service
 from code_generation.model import Model
 
 
 def main():
     log.print_with_newline("=== Get it started ===")
 
-    # make an output dir
-    output_path = config.create_output_path()
-    u_repo.make_dir(output_path)
-    models = [Model(x) for x in q_repo.read_json(config.get_class_design_json_path())["models"]]
-    directory_service.recursively_make_dir(output_path, models)
+    print("Make an output dir")
+    directory_service.make_output_root_dir()
+    
+    print("Create model instances from the config")
+    models = config_service.get_models()
+    
+    print("Make dir structure")
+    directory_service.recursively_make_dir(models)
         
     print("Generate a domain model")
-    
     template_service.generate_dtos(models)
     return
     

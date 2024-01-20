@@ -2,17 +2,16 @@
 namespace @@namespace@@
 {
 	/// <summary>
-	/// @@lgc@@ Model
+	/// @@logical_name@@ Model
 	/// </summary>
-	public class @@physc@@ : IModel
+	public class @@physical_name@@ : IModel
 	{
 		/// <summary>
 		/// Constructor
 		/// </summary>
 		/// <param name="dto">Data Transfer Obejct</param>
-		internal @@physc@@(SubscriptionDto dto)
+		internal @@physical_name@@()
 		{
-			@@init@@
 		}
 
 		@@properties@@
