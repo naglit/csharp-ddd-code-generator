@@ -1,24 +1,25 @@
 from pyutil.util import case_conversion as cc
+from code_generation.dto import Dto
 
 class Template:
     PROPERTIES_TAG = "@@properties@@"
     PASCAL_PROPERTY_TAG = "@@property@@"
     SNAKE_PROPERTY_TAG = "@@snake_property@@"
     DTO_PROPERTY_CODE = r"""[DbValue("@@snake_property@@")]\r\n\t\tpublic sting @@property@@ { get; set; }"""
+    
     def __init__(self, lines: list[str]) -> None:
         self.__original_lines = lines
         self.__bound_lines = lines
     
-    def bind_properties(self, properties: list[str]):
-        property_codes_in_string = self.generate_property_codes(properties)
+    def bind_properties(self, dto: Dto) -> list[str]:
         new_lines = []
         for line in self.__bound_lines:
             if self.PROPERTIES_TAG not in line:
                 new_lines.append(line)
                 continue
-            
-            new_lines.append(line.replace(self.PROPERTIES_TAG, property_codes_in_string))
+            new_lines.append(line.replace(self.PROPERTIES_TAG, dto.properties))
             break
+        
         self.__bound_lines = new_lines
         print(self.__bound_lines)
 

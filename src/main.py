@@ -5,6 +5,7 @@ from pyutil.util import log_util as log
 from code_generation import bind_service, file_repository, template_service
 from code_generation import directory_service, config_service
 from code_generation.model import Model
+from code_generation.dto import Dto
 
 
 def main():
@@ -20,7 +21,7 @@ def main():
     directory_service.recursively_make_dir(models)
         
     print("Generate a domain model")
-    template_service.generate_dtos(models)
+    template_service.generate_dtos([model.convert_into_dto() for model in models])
     return
     
 

@@ -1,6 +1,7 @@
 from pyutil.util import file_query_repository as q_repo
+from pyutil.util import file_update_repository as u_repo
 import code_generation.bind_service as tr
-from code_generation.model import Model
+from code_generation.dto import Dto
 from code_generation.template import Template
 from pyutil.util import log_util as log
 
@@ -15,35 +16,12 @@ TEMPLATES_MAP = {
         VALUE_OBJECT_CLASS: "template-valueobject.cs",
     }
 
-def generate_dtos(models: list[Model]):
-    models = __get_dto_models(models)
-    for model in models:
-        generate_dto(model)
+def generate_dtos(models: list[Dto]) -> None:
+    for model in models: generate_dto(model)
 
-def generate_dto(properties: list[str]):
-    template = __read_dto_template()
-    template.bind_properties(properties)
-    # class-name
-    #  
-
-def __get_dto_models(models: list[Model]) -> list[list[str]]:
-    get_db_mapping_models = [__get_db_mapping_values(model) for model in models]
-    for model in models:
-        __get_db_mapping_values(model)
-    
-
-def __get_db_mapping_values(model: Model) -> list[str]:
-    """ Create a model to bind """
-    values = []
-    if model.has_properties():
-        for p in model.get_properties():
-             values += __get_db_mapping_values(p)
-        return values
-
-    values.append(model.get_db_mapping_value())
-    return values
-    # template = read_dto_template()
-    # tr.bind_dto() ## this is function
+def generate_dto(dto: Dto):
+    lines = __read_dto_template().bind_properties(dto)
+    u_repo.write_file(dto.filepath, lines)
 
 def __read_dto_template() -> Template:
     return __read_template(TEMPLATES_MAP[DTO_CLASS])

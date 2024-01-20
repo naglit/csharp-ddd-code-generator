@@ -1,4 +1,5 @@
 from pyutil.util import case_conversion as cc
+from code_generation.dto import Dto
 
 class Model:
 	NAMESPACE = "namespace"
@@ -27,6 +28,23 @@ class Model:
 
 	def has_parent_model(self) -> bool: return True if self.__parent_model_namespace != None else False
 
+	def convert_into_dto(self) -> Dto:
+		return Dto(self.namespace, self.get_physical_name(), self.get_logical_name(), self.get_db_mapping_values)
+
+	# def __get_dto_models(self) -> list[list[str]]:
+	# 	get_db_mapping_models = [self.get_db_mapping_value(model) for model in models]
+	# 	for model in models:
+	# 		__get_db_mapping_values(model)
+
+	def get_db_mapping_values(self) -> list[str]:
+		""" Recusively get db mapping value """
+		values = [p.get_db_mapping_values() for p in self.__properties]
+		values.append(self.__get_db_mapping_value())
+		return values
+	
+	def __get_db_mapping_value(self) -> str:
+		return self.__model.get(self.DB_MAPPING_VALUE, cc.to_lower_snake_from_pascal(self.get_physical_name()))
+
 	def get_physical_name(self) -> str:
 		return self.__model.get(self.PHYSICAL_NAME, "UnnamedClass")
 	
@@ -35,8 +53,5 @@ class Model:
 	
 	def get_namespace(self) -> str:
 		return self.__model.get(self.NAMESPACE, "")
-	
-	def get_db_mapping_value(self) -> str:
-		return self.__model.get(self.DB_MAPPING_VALUE, cc.to_lower_snake_from_pascal(self.get_physical_name()))
 	
 	def get_properties(self) -> list : return self.__properties
