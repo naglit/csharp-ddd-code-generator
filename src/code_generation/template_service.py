@@ -20,7 +20,7 @@ def generate_dtos(models: list[Dto]) -> None:
     for model in models: generate_dto(model)
 
 def generate_dto(dto: Dto):
-    lines = __read_dto_template().bind_properties(dto)
+    lines = __read_dto_template().bind(dto)
     u_repo.write_file(dto.filepath, lines)
 
 def __read_dto_template() -> Template:
