@@ -16,14 +16,13 @@ class Model:
 		self.__parent_model_namespace = None
 		self.namespace = self.get_physical_name()
 
-	def __init__(self, model: dict, parent_model_namespace: str = None):
+	def __init__(self, model: dict, namespace: str = None):
 		self.__model = model
-		parent_model_namespace
-		properties = [Model(x, self.namespace) for x in model.get(self.PROPERTIES, [])]
-		namespace = f"{parent_model_namespace}.{self.get_physical_name()}" if len(properties) > 0 else parent_model_namespace
-		self.__properties = properties
-		self.__parent_model_namespace = parent_model_namespace
-		self.namespace = namespace if parent_model_namespace == None else self.get_physical_name()
+		self.namespace = namespace
+		physical_name = model.get(self.PHYSICAL_NAME, "UnnamedClass")
+		child_namespace = f"{namespace}.{physical_name}"
+		properties = [Model(x, child_namespace) for x in model.get(self.PROPERTIES, [])]
+		self.__properties = properties		
 	
 	def has_properties(self) -> bool: return True if len(self.__properties) > 0 else False
 
